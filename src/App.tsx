@@ -1,26 +1,18 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
+import { Navbar } from "flowbite-react";
+import logo from "./assets/logo.webp";
+import DarkModeSwitcher from "./components/DarkModeSwitcher/DarkModeSwitcher";
 
 function App() {
     return (
-        <Grid
-            templateAreas={{
-                base: `"nav" "main"`,
-                lg: `"nav nav" "aside main"`,
-            }}
-        >
-            <GridItem area="nav">
-               <NavBar />
-            </GridItem>
-            <Show above="lg">
-              <GridItem area="aside" bg="gold">
-                  Aside
-              </GridItem>
-            </Show>
-            <GridItem area="main" bg="dodgerblue">
-                Main
-            </GridItem>
-        </Grid>
+        <>
+            <Navbar fluid={true} rounded={true}>
+                <Navbar.Brand>
+                    <img src={logo} className="h-9" />
+                </Navbar.Brand>
+                <div className="flex flex-col gap-4" id="toggle"></div>
+                <DarkModeSwitcher />
+            </Navbar>
+        </>
     );
 }
 
