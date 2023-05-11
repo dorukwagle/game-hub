@@ -1,28 +1,10 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
 import { ListGroup } from "flowbite-react";
+import useGames from "../hooks/useGames";
 
-
-interface Game {
-    id: number;
-    name: string;
-}
-
-interface FetchGamesResponse {
-    count: number;
-    results: Game[];
-}
 
 const GameGrid = () => {
-    const [games, setGames] = useState<Game[]>([]);
-    const [error, setError] = useState("");
+    const { games, error } = useGames();
 
-    useEffect(() => {
-        apiClient.get<FetchGamesResponse>("/games")
-            .then(res => setGames(res.data.results))
-            .catch(err => setError(err.message));
-    },[]);
-    console.log(games);
     return (
         <div className="w-48">
             <ListGroup>

@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
     p {
-        @apply font-normal text-slate-700 dark:text-slate-100
+        @apply font-normal text-slate-700 dark:text-slate-100;
     }
 }
