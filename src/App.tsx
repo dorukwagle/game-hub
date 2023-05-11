@@ -1,18 +1,9 @@
-import { Navbar } from "flowbite-react";
-import logo from "./assets/logo.webp";
-import DarkModeSwitcher from "./components/DarkModeSwitcher/DarkModeSwitcher";
+import Home from "./Home";
+
 
 function App() {
     return (
-        <>
-            <Navbar fluid={true} rounded={true}>
-                <Navbar.Brand>
-                    <img src={logo} className="h-9" />
-                </Navbar.Brand>
-                <div className="flex flex-col gap-4" id="toggle"></div>
-                <DarkModeSwitcher />
-            </Navbar>
-        </>
+            <Home></Home>
     );
 }
 
