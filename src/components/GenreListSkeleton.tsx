@@ -1,4 +1,5 @@
 import { ListGroup } from "flowbite-react";
+import { FaCircle } from "react-icons/fa";
 
 const GenreListSkeleton = () => {
     const styles: {[key: number]: string} = {
@@ -17,7 +18,7 @@ const GenreListSkeleton = () => {
         <div className="shadow animate-pulse">
             <ListGroup>
                 {listItems.map((item) => (
-                    <ListGroup.Item key={item}>
+                    <ListGroup.Item key={item} icon={FaCircle}>
                         <div
                             className={`rounded-full ${styles[item]} h-5 tracking-tight bg-gray-300 dark:bg-gray-600`}
                         ></div>
