@@ -2,6 +2,7 @@ import { Card } from "flowbite-react";
 import { Game } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import getCroppedImageUrl from "../services/image-urls";
 
 interface Props {
     game: Game;
@@ -10,7 +11,7 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   return (
       <div className="max-w-sm">
-        <Card key={game.id} imgSrc={game.background_image}>
+        <Card key={game.id} imgSrc={getCroppedImageUrl(game.background_image)}>
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {game.name}
             </h5>
