@@ -2,6 +2,7 @@ import { Button, Navbar } from "flowbite-react";
 import logo from "./assets/logo.webp";
 import DarkModeSwitcher from "./components/DarkModeSwitcher";
 import GameGrid from "./components/GameGrid";
+import GenreList from "./components/GenreList";
 
 const Home = () => {
     return (
@@ -17,7 +18,7 @@ const Home = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-5">
                 <div className="hidden lg:block">
-                    <Button color={"purple"}>Left Panel</Button>
+                    <GenreList />
                 </div>
                 <div className="lg:col-span-4">
                     <GameGrid></GameGrid>
