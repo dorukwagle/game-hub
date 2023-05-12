@@ -15,11 +15,11 @@ const Home = () => {
                 </Navbar>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="grid grid-cols-1 lg:grid-cols-5">
                 <div className="hidden lg:block">
                     <Button color={"purple"}>Left Panel</Button>
                 </div>
-                <div>
+                <div className="lg:col-span-4">
                     <GameGrid></GameGrid>
                 </div>
             </div>

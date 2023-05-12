@@ -1,16 +1,15 @@
 import { ListGroup } from "flowbite-react";
 import useGames from "../hooks/useGames";
-
+import GameCard from "./GameCard";
 
 const GameGrid = () => {
     const { games, error } = useGames();
 
     return (
-        <div className="w-48">
-            <ListGroup>
-                {error && <p className="text-red-600 font-bold text-xl">{error}</p>}
-                {games.length !== 0 && games.map(game => <ListGroup.Item key={game.id}>{game.id}: {game.name}</ListGroup.Item>)}
-            </ListGroup>
+        <div className="p-2 grid gap-4 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
+            {error && <p className="text-red-600 font-bold text-xl">{error}</p>}
+            {games.length !== 0 &&
+                games.map((game) => <GameCard game={game} />)}
         </div>
     );
 };
