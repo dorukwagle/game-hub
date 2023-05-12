@@ -1,4 +1,3 @@
-import { ListGroup } from "flowbite-react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 
