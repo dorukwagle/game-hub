@@ -7,11 +7,13 @@ import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
+import SortSelector from "./components/SortSelector";
 
 
 export interface GameQuery {
     genre: Genre | null;
     platform: Platform | null;
+    sortOrder: string;
 }
 
 const Home = () => {
@@ -37,8 +39,9 @@ const Home = () => {
                     <GenreList onSelect={(genre) => setGameQuery({...gameQuery, genre})} />
                 </div>
                 <div className="lg:col-span-4">
-                    <div className="ml-2">
+                    <div className="ml-2 flex gap-2 mt-2 mb-2">
                         <PlatformSelector onSelect={platform => setGameQuery({...gameQuery, platform})} />
+                        <SortSelector onSelect={sortOrder => setGameQuery({...gameQuery, sortOrder})}/>
                     </div>
                     <GameGrid gameQuery={gameQuery}></GameGrid>
                 </div>
