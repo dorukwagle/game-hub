@@ -1,11 +1,11 @@
 import { Avatar, ListGroup } from "flowbite-react";
-import useGenres from "../hooks/useGenres";
+import useGenres, { Genre } from "../hooks/useGenres";
 import GenreListSkeleton from "./GenreListSkeleton";
 import getCroppedImageUrl from "../services/image-urls";
 import { useState } from "react";
 
 interface Props {
-    onSelect: (genre: string) => void;
+    onSelect: (genre: Genre) => void;
 }
 
 const GenreList = ({ onSelect }: Props) => {
@@ -24,7 +24,7 @@ const GenreList = ({ onSelect }: Props) => {
                         active={selectedIndex === index}
                         onClick={() => {
                             setSelectedIndex(index);
-                            onSelect(genre.slug);
+                            onSelect(genre);
                         }}
                     >
                         <div
