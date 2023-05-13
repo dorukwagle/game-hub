@@ -3,7 +3,11 @@ import logo from "../assets/logo.webp";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import SearchBox from "./SearchBox";
 
-const NavBar = () => {
+interface Props {
+    onSearch: (searchText: string) => void;
+}
+
+const NavBar = ({ onSearch }: Props) => {
     return (
         <Navbar
             fluid={true}
@@ -14,7 +18,7 @@ const NavBar = () => {
                 <img src={logo} className="h-9" />
             </Navbar.Brand>
                 <div className="w-1/2">
-                    <SearchBox />
+                    <SearchBox onSearch={onSearch}/>
                 </div>
             <DarkModeSwitcher />
         </Navbar>

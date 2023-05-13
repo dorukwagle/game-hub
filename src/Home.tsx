@@ -12,6 +12,7 @@ export interface GameQuery {
     genre: Genre | null;
     platform: Platform | null;
     sortOrder: string;
+    searchText: string;
 }
 
 const Home = () => {
@@ -20,9 +21,9 @@ const Home = () => {
     return (
         <div className="grid grid-rows-1">
             <div>
-                <NavBar />
+                <NavBar onSearch={(searchText) => setGameQuery({...gameQuery, searchText})}/>
             </div>
-
+        
             <div className="grid grid-cols-1 lg:grid-cols-5">
                 <div className="hidden lg:block">
                     <GenreList onSelect={(genre) => setGameQuery({...gameQuery, genre})} />
