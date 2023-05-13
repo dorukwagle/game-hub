@@ -5,9 +5,11 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
+import { Platform } from "./hooks/useGames";
 
 const Home = () => {
     const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
+    const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
 
     return (
         <div className="grid grid-rows-1">
@@ -30,9 +32,9 @@ const Home = () => {
                 </div>
                 <div className="lg:col-span-4">
                     <div className="ml-2">
-                        <PlatformSelector />
+                        <PlatformSelector onSelect={platform => setSelectedPlatform(platform)} />
                     </div>
-                    <GameGrid selectedGenre={selectedGenre}></GameGrid>
+                    <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}></GameGrid>
                 </div>
             </div>
         </div>
