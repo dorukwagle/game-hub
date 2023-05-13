@@ -4,7 +4,11 @@ import GenreListSkeleton from "./GenreListSkeleton";
 import getCroppedImageUrl from "../services/image-urls";
 import { useState } from "react";
 
-const GenreList = () => {
+interface Props {
+    onSelect: (genre: string) => void;
+}
+
+const GenreList = ({ onSelect }: Props) => {
     const { data, error, isLoading } = useGenres();
     const [selectedGenra, setSelectedGenra] = useState(-1);
 
@@ -18,7 +22,10 @@ const GenreList = () => {
                     <ListGroup.Item
                         key={genre.id}
                         active={selectedGenra === index}
-                        onClick={() => setSelectedGenra(index)}
+                        onClick={() => {
+                            setSelectedGenra(index);
+                            onSelect(genre.slug);
+                        }}
                     >
                         <div className="flex gap-4 items-center font-bold">
                             <Avatar

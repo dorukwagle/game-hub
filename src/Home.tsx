@@ -1,10 +1,13 @@
-import { Button, Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 import logo from "./assets/logo.webp";
 import DarkModeSwitcher from "./components/DarkModeSwitcher";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { useState } from "react";
 
 const Home = () => {
+    const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
+
     return (
         <div className="grid grid-rows-1">
             <div>
@@ -18,10 +21,10 @@ const Home = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-5">
                 <div className="hidden lg:block">
-                    <GenreList />
+                    <GenreList onSelect={genre => setSelectedGenre(genre)} />
                 </div>
                 <div className="lg:col-span-4">
-                    <GameGrid></GameGrid>
+                    <GameGrid selectedGenre={selectedGenre}></GameGrid>
                 </div>
             </div>
         </div>

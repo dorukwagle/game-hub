@@ -2,8 +2,13 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-const GameGrid = () => {
-    const { data, error, isLoading } = useGames();
+
+interface Props {
+    selectedGenre: string | null;
+}
+
+const GameGrid = ({ selectedGenre }: Props) => {
+    const { data, error, isLoading } = useGames(selectedGenre);
     const skeletonArrya = [1, 2, 3, 4, 5, 6];
 
     return (

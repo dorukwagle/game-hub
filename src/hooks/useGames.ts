@@ -14,6 +14,6 @@ export interface Game {
     metacritic: number;
 }
 
-const useGames = () =>  useData<Game>("/games");
+const useGames = (selectedGenre: string | null) =>  useData<Game>("/games", { params: { genres: selectedGenre} }, [selectedGenre]);
 
 export default useGames;
