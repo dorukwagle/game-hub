@@ -4,6 +4,7 @@ import DarkModeSwitcher from "./components/DarkModeSwitcher";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
+import PlatformSelector from "./components/PlatformSelector";
 
 const Home = () => {
     const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
@@ -11,7 +12,11 @@ const Home = () => {
     return (
         <div className="grid grid-rows-1">
             <div>
-                <Navbar fluid={true} rounded={false} className="bg-gray-300 rounded-bl-3xl rounded-br-3xl">
+                <Navbar
+                    fluid={true}
+                    rounded={false}
+                    className="bg-gray-300 rounded-bl-3xl rounded-br-3xl"
+                >
                     <Navbar.Brand>
                         <img src={logo} className="h-9" />
                     </Navbar.Brand>
@@ -21,9 +26,12 @@ const Home = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-5">
                 <div className="hidden lg:block">
-                    <GenreList onSelect={genre => setSelectedGenre(genre)} />
+                    <GenreList onSelect={(genre) => setSelectedGenre(genre)} />
                 </div>
                 <div className="lg:col-span-4">
+                    <div className="ml-2">
+                        <PlatformSelector />
+                    </div>
                     <GameGrid selectedGenre={selectedGenre}></GameGrid>
                 </div>
             </div>

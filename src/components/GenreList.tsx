@@ -10,7 +10,7 @@ interface Props {
 
 const GenreList = ({ onSelect }: Props) => {
     const { data, error, isLoading } = useGenres();
-    const [selectedGenra, setSelectedGenra] = useState(-1);
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
     if (error) <div></div>;
 
@@ -21,13 +21,20 @@ const GenreList = ({ onSelect }: Props) => {
                 data.map((genre, index) => (
                     <ListGroup.Item
                         key={genre.id}
-                        active={selectedGenra === index}
+                        active={selectedIndex === index}
                         onClick={() => {
-                            setSelectedGenra(index);
+                            setSelectedIndex(index);
                             onSelect(genre.slug);
                         }}
                     >
-                        <div className="flex gap-4 items-center font-bold">
+                        <div
+                            className={
+                                "flex gap-4 items-center font-bold " +
+                                (selectedIndex === index
+                                    ? "text-lg"
+                                    : "")
+                            }
+                        >
                             <Avatar
                                 img={getCroppedImageUrl(genre.image_background)}
                                 rounded={true}
