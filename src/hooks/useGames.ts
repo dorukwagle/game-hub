@@ -3,12 +3,11 @@ import gameService, { Game } from "../services/gameService";
 import { GameQuery } from "../Home";
 import { HOUR } from "./constants";
 
-
 const useGames = (gameQuery: GameQuery) => {
     const config = {
         params: {
             genres: gameQuery.genre?.id,
-            platforms: gameQuery.platform?.id,
+            parent_platforms: gameQuery.platform?.id,
             ordering: gameQuery.sortOrder,
             search: gameQuery.searchText,
         },
@@ -18,8 +17,8 @@ const useGames = (gameQuery: GameQuery) => {
         queryKey: ["games", config.params],
         queryFn: () => gameService.getAll(config),
         cacheTime: HOUR,
-        staleTime: HOUR
-    })
-}
+        staleTime: HOUR,
+    });
+};
 
 export default useGames;
