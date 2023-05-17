@@ -16,6 +16,7 @@ const useGames = (gameQuery: GameQuery) => {
         queryKey: ["games", params],
         queryFn: ({ pageParam = 1 }) => gameService.getAll({params: {...params, page: pageParam}}),
         staleTime: ONE_DAY,
+        retry: 3,
         keepPreviousData: true,
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.next? allPages.length + 1 : undefined;
