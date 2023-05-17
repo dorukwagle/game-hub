@@ -22,7 +22,7 @@ const GenreList = ({ onSelect }: Props) => {
             </p>
             <ListGroup>
                 {isLoading && <GenreListSkeleton />}
-                {data?.map((genre, index) => (
+                {data?.results.map((genre, index) => (
                     <ListGroup.Item
                         key={genre.id}
                         active={selectedIndex === index}

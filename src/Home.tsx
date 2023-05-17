@@ -37,7 +37,7 @@ const Home = () => {
                         <PlatformSelector onSelect={platform => setGameQuery({...gameQuery, platform})} />
                         <SortSelector onSelect={sortOrder => setGameQuery({...gameQuery, sortOrder})}/>
                     </div>
-                    <GameGrid gameQuery={gameQuery}></GameGrid>
+                        <GameGrid gameQuery={gameQuery}></GameGrid>
                 </div>
             </div>
         </div>

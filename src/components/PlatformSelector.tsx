@@ -15,7 +15,7 @@ const PlatformSelector = ({ onSelect }: Props) => {
     if (error || !data) return null;
     return (
         <Dropdown label={selectedItem || "Platforms"} color="dark">
-            {data.map(item => <Dropdown.Item key={item.id} onClick={() => {
+            {data?.results.map(item => <Dropdown.Item key={item.id} onClick={() => {
                 setSelectedItem(item.name);
                 onSelect(item);
             }}>{item.name}</Dropdown.Item>)}
