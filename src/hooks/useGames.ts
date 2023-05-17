@@ -1,33 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import gameService, { Game } from "../services/gameService";
 import { GameQuery } from "../Home";
-import useData from "./useData";
+import { HOUR } from "./constants";
 
-export interface Platform {
-    id: number;
-    name: string;
-    slug: string;
-}
 
-export interface Game {
-    id: number;
-    name: string;
-    background_image: string;
-    parent_platforms: { platform: Platform }[];
-    metacritic: number;
-    rating_top: number;
-}
-
-const useGames = (gameQuery: GameQuery) =>
-    useData<Game>(
-        "/games",
-        {
-            params: {
-                genres: gameQuery.genre?.id,
-                platforms: gameQuery.platform?.id,
-                ordering: gameQuery.sortOrder,
-                search: gameQuery.searchText
-            },
+const useGames = (gameQuery: GameQuery) => {
+    const config = {
+        params: {
+            genres: gameQuery.genre?.id,
+            platforms: gameQuery.platform?.id,
+            ordering: gameQuery.sortOrder,
+            search: gameQuery.searchText,
         },
-        [gameQuery]
-    );
+    };
+
+    return useQuery<Game[], Error>({
+        queryKey: ["games", config.params],
+        queryFn: () => gameService.getAll(config),
+        cacheTime: HOUR,
+        staleTime: HOUR
+    })
+}
 
 export default useGames;

@@ -1,12 +1,16 @@
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import platformService, { Platform } from "../services/platformService";
+import { CACHE_KEY_PLATFORMS, ONE_DAY } from "./constants";
 
 
-interface Platform {
-    id: number;
-    name: string;
-    slug: string;
+
+const usePlatforms = () => {
+    return useQuery<Platform[], Error>({
+        queryKey: CACHE_KEY_PLATFORMS,
+        queryFn: platformService.getAll,
+        staleTime: ONE_DAY,
+        cacheTime: ONE_DAY,
+    })
 }
 
-const usePlatforms  = () => useData<Platform>("/platforms/lists/parents");
-
-export default usePlatforms; 
+export default usePlatforms;

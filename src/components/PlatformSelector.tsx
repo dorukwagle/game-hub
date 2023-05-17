@@ -1,7 +1,7 @@
 import { Dropdown } from "flowbite-react";
 import usePlatforms from "../hooks/usePlatforms";
 import { useState } from "react";
-import { Platform } from "../hooks/useGames";
+import { Platform } from "../services/platformService";
 
 
 interface Props {
@@ -12,7 +12,7 @@ const PlatformSelector = ({ onSelect }: Props) => {
     const { data, error } = usePlatforms();
     const [selectedItem, setSelectedItem] = useState("");
 
-    if (error) return null;
+    if (error || !data) return null;
     return (
         <Dropdown label={selectedItem || "Platforms"} color="dark">
             {data.map(item => <Dropdown.Item key={item.id} onClick={() => {

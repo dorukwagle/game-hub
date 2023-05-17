@@ -1,8 +1,9 @@
 import { Avatar, ListGroup } from "flowbite-react";
-import useGenres, { Genre } from "../hooks/useGenres";
 import GenreListSkeleton from "./GenreListSkeleton";
 import getCroppedImageUrl from "../services/image-urls";
-import { useState } from "react";
+import { useState } from "react"; 
+import { Genre } from "../services/genreService";
+import useGenres from "../hooks/useGenres";
 
 interface Props {
     onSelect: (genre: Genre) => void;
@@ -12,7 +13,7 @@ const GenreList = ({ onSelect }: Props) => {
     const { data, error, isLoading } = useGenres();
     const [selectedIndex, setSelectedIndex] = useState(-1);
 
-    if (error) <div></div>;
+    if (error || !data) return <div></div>;
 
     return (
         <>
