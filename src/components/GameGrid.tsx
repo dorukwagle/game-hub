@@ -3,14 +3,21 @@ import { GameQuery } from "../Home";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
-import { Button } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
     gameQuery: GameQuery;
 }
 
 const GameGrid = ({ gameQuery }: Props) => {
-    const { data, error, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useGames(gameQuery);
+    const {
+        data,
+        error,
+        isLoading,
+        fetchNextPage,
+        hasNextPage,
+    } = useGames(gameQuery);
     const skeletonArrya = [1, 2, 3, 4, 5, 6];
 
     if (error)
@@ -20,8 +27,17 @@ const GameGrid = ({ gameQuery }: Props) => {
             </p>
         );
 
+    const totalFetchedGames =
+        data?.pages.reduce((total, page) => total + page.results.length, 0) ||
+        0;
+
     return (
-        <>
+        <InfiniteScroll
+            dataLength={totalFetchedGames}
+            hasMore={!!hasNextPage}
+            next={() => fetchNextPage()}
+            loader={<Spinner />}
+        >
             <div className="p-2 grid gap-4 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
                 {isLoading &&
                     skeletonArrya.map((s) => <GameCardSkeleton key={s} />)}
@@ -33,15 +49,7 @@ const GameGrid = ({ gameQuery }: Props) => {
                     </React.Fragment>
                 ))}
             </div>
-
-            { hasNextPage && 
-                <Button color="dark" className="cursor-pointer mb-2 ml-2" 
-            onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}>
-                {isFetchingNextPage? "Loading..." : "Load More"}
-            </Button>
-            }
-        </>
+        </InfiniteScroll>
     );
 };
 
