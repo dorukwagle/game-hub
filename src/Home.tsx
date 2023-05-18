@@ -24,9 +24,9 @@ const Home = () => {
             <div className="sticky top-0 z-50">
                 <NavBar onSearch={(searchText) => setGameQuery({...gameQuery, searchText})}/>
             </div>
-        
-            <div className="grid grid-cols-1 lg:grid-cols-5 ">
-                <div className="hidden lg:block">
+
+            <div className="grid grid-cols-1 lg:grid-cols-5">
+                <div className="hidden lg:block sticky top-16 h-[calc(100vh-70px)] overflow-y-scroll overscroll-contain ">
                     <GenreList onSelect={(genre) => setGameQuery({...gameQuery, genre})} />
                 </div>
                 <div className="lg:col-span-4">
