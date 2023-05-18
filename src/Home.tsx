@@ -20,13 +20,13 @@ const Home = () => {
     const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
     return (
-        <div className="grid grid-rows-1">
+        <div className="grid grid-rows-1 ">
             <div className="sticky top-0 z-50">
                 <NavBar onSearch={(searchText) => setGameQuery({...gameQuery, searchText})}/>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-5">
-                <div className="hidden lg:block sticky top-16 h-[calc(100vh-70px)] overflow-y-scroll overscroll-contain ">
+                <div className="hidden lg:block sticky top-16 h-[calc(100vh-70px)] overflow-y-scroll overscroll-contain dark:scrollbar scrollbar-light">
                     <GenreList onSelect={(genre) => setGameQuery({...gameQuery, genre})} />
                 </div>
                 <div className="lg:col-span-4">

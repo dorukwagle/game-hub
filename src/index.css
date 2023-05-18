@@ -6,4 +6,43 @@
     p {
         @apply font-normal text-slate-700 dark:text-slate-100;
     }
+    .scrollbar::-webkit-scrollbar {
+        width: 4px;
+        height: 10px;
+    }
+
+    .scrollbar::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #696969;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        background: #424141;
+        border-radius: 100vh;
+        border: none;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #2c2a2c;
+    }
+    
+    .scrollbar-light::-webkit-scrollbar {
+        width: 4px;
+        height: 10px;
+    }
+
+    .scrollbar-light::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #c0c0c0;
+    }
+
+    .scrollbar-light::-webkit-scrollbar-thumb {
+        background: #787676;
+        border-radius: 100vh;
+        border: none;
+    }
+
+    .scrollbar-light::-webkit-scrollbar-thumb:hover {
+        background: #464646;
+    }
 }
