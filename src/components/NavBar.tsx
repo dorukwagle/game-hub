@@ -12,7 +12,7 @@ const NavBar = ({ onSearch }: Props) => {
         <Navbar
             fluid={true}
             rounded={false}
-            className="bg-gray-300 rounded-bl-3xl rounded-br-3xl"
+            className="bg-gray-300 rounded-bl-3xl rounded-br-3xl top-0"
         >
             <Navbar.Brand>
                 <img src={logo} className="h-9" />

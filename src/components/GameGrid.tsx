@@ -3,7 +3,6 @@ import { GameQuery } from "../Home";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
-import { Button, Spinner } from "flowbite-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
@@ -27,27 +26,23 @@ const GameGrid = ({ gameQuery }: Props) => {
         0;
 
     return (
-        <div className="">
-            <InfiniteScroll
-                dataLength={totalFetchedGames}
-                hasMore={!!hasNextPage}
-                next={() => fetchNextPage()}
-                loader={<Spinner />}
-                className="p-2 grid gap-4 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4"
-            >
-                {/* <div className="p-2 grid gap-4 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4"> */}
-                    {isLoading &&
-                        skeletonArrya.map((s) => <GameCardSkeleton key={s} />)}
-                    {data?.pages.map((page, index) => (
-                        <React.Fragment key={index}>
-                            {page.results.map((game) => (
-                                <GameCard key={game.id} game={game} />
-                            ))}
-                        </React.Fragment>
+        <InfiniteScroll
+            dataLength={totalFetchedGames}
+            hasMore={!!hasNextPage}
+            next={() => fetchNextPage()}
+            loader={<GameCardSkeleton />}
+            className="p-2 grid gap-4 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4"
+        >
+            {isLoading &&
+                skeletonArrya.map((s) => <GameCardSkeleton key={s} />)}
+            {data?.pages.map((page, index) => (
+                <React.Fragment key={index}>
+                    {page.results.map((game) => (
+                        <GameCard key={game.id} game={game} />
                     ))}
-                {/* </div> */}
-            </InfiniteScroll>
-        </div>
+                </React.Fragment>
+            ))}
+        </InfiniteScroll>
     );
 };
 

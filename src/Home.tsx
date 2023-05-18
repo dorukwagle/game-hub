@@ -21,11 +21,11 @@ const Home = () => {
 
     return (
         <div className="grid grid-rows-1">
-            <div>
+            <div className="sticky top-0 z-50">
                 <NavBar onSearch={(searchText) => setGameQuery({...gameQuery, searchText})}/>
             </div>
         
-            <div className="grid grid-cols-1 lg:grid-cols-5">
+            <div className="grid grid-cols-1 lg:grid-cols-5 ">
                 <div className="hidden lg:block">
                     <GenreList onSelect={(genre) => setGameQuery({...gameQuery, genre})} />
                 </div>
