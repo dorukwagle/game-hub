@@ -1,17 +1,16 @@
 import { useRef } from "react";
+import useGameQuery from "../store";
 
 
-interface Props {
-    onSearch: (searchText: string) => void;
-}
-
-const SearchBox = ({ onSearch }: Props) => {
+const SearchBox = () => {
     const ref = useRef<HTMLInputElement>(null);
+    const setSearchText = useGameQuery(s => s.setSearchText);
+                
 
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
-            if(ref.current?.value) onSearch(ref.current.value);
+            if(ref.current?.value) setSearchText(ref.current.value);
         }} className="flex items-center">
             <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

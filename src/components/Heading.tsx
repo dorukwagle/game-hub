@@ -1,11 +1,11 @@
-import { GameQuery } from "../Home";
+import useGameQuery from "../store";
 
-interface Props {
-    gameQuery: GameQuery;
-}
 
-const Heading = ({ gameQuery }: Props) => {
-    const heading = `${gameQuery.platform?.name || ''} ${gameQuery.genre?.name || ''} Games`;
+const Heading = () => {
+    const platformName = useGameQuery(s => s.query.platform?.name);
+    const genre = useGameQuery(s => s.query.genre?.name);
+
+    const heading = `${platformName || ''} ${genre || ''} Games`;
     return (
         <p className="text-5xl font-bold text-gray-900 dark:text-white">
             {heading}

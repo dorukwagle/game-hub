@@ -1,23 +1,18 @@
 import { Dropdown } from "flowbite-react";
 import usePlatforms from "../hooks/usePlatforms";
-import { useState } from "react";
-import { Platform } from "../services/platformService";
+import useGameQuery from "../store";
 
 
-interface Props {
-    onSelect: (platform: Platform) => void;
-}
-
-const PlatformSelector = ({ onSelect }: Props) => {
+const PlatformSelector = () => {
     const { data, error } = usePlatforms();
-    const [selectedItem, setSelectedItem] = useState("");
+    const selectedPlatform = useGameQuery(s => s.query.platform);
+    const setSelectedPlatform = useGameQuery(s => s.setPlatform);
 
     if (error || !data) return null;
     return (
-        <Dropdown label={selectedItem || "Platforms"} color="dark">
+        <Dropdown label={selectedPlatform?.name || "Platforms"} color="dark">
             {data?.results.map(item => <Dropdown.Item key={item.id} onClick={() => {
-                setSelectedItem(item.name);
-                onSelect(item);
+                setSelectedPlatform(item);
             }}>{item.name}</Dropdown.Item>)}
         </Dropdown>
     );

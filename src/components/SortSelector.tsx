@@ -1,13 +1,10 @@
-import { useState } from "react";
 import { Dropdown } from "flowbite-react";
+import useGameQuery from "../store";
 
 
-interface Props {
-    onSelect: (sortOrder: string) => void;
-}
-
-const SortSelector = ({ onSelect }: Props) => {
- const [selectedItem, setSelectedItem] = useState("");
+const SortSelector = () => {
+ const sortOrder = useGameQuery(s => s.query.sortOrder);
+ const setSortOrder = useGameQuery(s => s.setSortOrder);
 
  const menuItems = [
     {value: '', label: "Relevance"},
@@ -19,13 +16,12 @@ const SortSelector = ({ onSelect }: Props) => {
  ];
 
  return (
-     <Dropdown label={selectedItem || "Order by: Relevance"} color="dark">
+     <Dropdown label={sortOrder || "Order by: Relevance"} color="dark">
          {menuItems.map((item) => (
              <Dropdown.Item
                  key={item.value}
                  onClick={() => {
-                     setSelectedItem(item.label);
-                     onSelect(item.value);
+                     setSortOrder(item.label);
                  }}
              >
                  {item.label}

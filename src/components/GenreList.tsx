@@ -1,17 +1,14 @@
 import { Avatar, ListGroup } from "flowbite-react";
-import GenreListSkeleton from "./GenreListSkeleton";
-import getCroppedImageUrl from "../services/image-urls";
-import { useState } from "react";
-import { Genre } from "../services/genreService";
 import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-urls";
+import useGameQuery from "../store";
+import GenreListSkeleton from "./GenreListSkeleton";
 
-interface Props {
-    onSelect: (genre: Genre) => void;
-}
 
-const GenreList = ({ onSelect }: Props) => {
+const GenreList = () => {
     const { data, error, isLoading } = useGenres();
-    const [selectedIndex, setSelectedIndex] = useState(-1);
+    const selectedGenreId = useGameQuery(s => s.query.genre?.id);
+    const setSelectedGenre = useGameQuery(s => s.setGenre);
 
     if (error) return <div></div>;
 
@@ -22,19 +19,18 @@ const GenreList = ({ onSelect }: Props) => {
             </p>
             <ListGroup>
                 {isLoading && <GenreListSkeleton />}
-                {data?.results.map((genre, index) => (
+                {data?.results.map((genre) => (
                     <ListGroup.Item
                         key={genre.id}
-                        active={selectedIndex === index}
+                        active={selectedGenreId === genre.id}
                         onClick={() => {
-                            setSelectedIndex(index);
-                            onSelect(genre);
+                            setSelectedGenre(genre);
                         }}
                     >
                         <div
                             className={
                                 "flex gap-4 items-center font-bold " +
-                                (selectedIndex === index ? "text-lg" : "")
+                                (selectedGenreId === genre.id ? "text-lg" : "")
                             }
                         >
                             <Avatar
