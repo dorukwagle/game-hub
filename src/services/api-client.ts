@@ -24,6 +24,10 @@ class ApiClient<T> {
         apiClient
             .get<FetchDataResponse<T>>(this.endpoint, { ...requestConfig })
             .then((res) => res.data);
+
+    get = (id: string | number) => 
+        apiClient.get<T>(this.endpoint + "/" + id)
+        .then(res => res.data);
     
 }
 
