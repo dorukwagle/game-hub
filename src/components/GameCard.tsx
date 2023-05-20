@@ -11,7 +11,7 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-      <div className="max-w-sm">
+      <div className="max-w-sm hover:scale-105 hover:duration-300">
         <Card key={game.id} imgSrc={getCroppedImageUrl(game.background_image)}>
             <div className="flex flex-wrap justify-between font-normal text-gray-500 dark:text-gray-400">
                 <PlatformIconList platforms={game.parent_platforms.map(p => p.platform)}/> 
