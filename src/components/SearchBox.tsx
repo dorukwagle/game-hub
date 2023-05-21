@@ -1,16 +1,20 @@
 import { useRef } from "react";
 import useGameQuery from "../store";
+import { useNavigate } from "react-router-dom";
 
 
 const SearchBox = () => {
     const ref = useRef<HTMLInputElement>(null);
     const setSearchText = useGameQuery(s => s.setSearchText);
-                
+    const navigate = useNavigate();
 
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
-            if(ref.current?.value) setSearchText(ref.current.value);
+            if(ref.current?.value){
+                setSearchText(ref.current.value);
+                navigate("/");
+            } 
         }} className="flex items-center">
             <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

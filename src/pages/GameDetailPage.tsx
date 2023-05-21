@@ -13,20 +13,23 @@ const GameDetailPage = () => {
     if (error) return <div>{error.message}</div>;
     if (isLoading) return <Spinner />;
     return (
-        <div className="pl-2 pr-2">
-            <h2 className="text-3xl mb-3 font-bold tracking-tight text-gray-900 dark:text-white">
-                {data.name}
-            </h2>
-
-            <div className="text-md mb-3 tracking-tight text-gray-900 dark:text-white">
-                <ExpandableText minLength={400}>
-                    {data?.description_raw}
-                </ExpandableText>
+        <div className="pl-2 pr-2 md:grid md:grid-cols-2 md:gap-2">
+            <div>
+                <h2 className="text-3xl mb-3 font-bold tracking-tight text-gray-900 dark:text-white">
+                    {data.name}
+                </h2>
+                <div className="text-md mb-3 tracking-tight text-gray-900 dark:text-white">
+                    <ExpandableText minLength={400}>
+                        {data?.description_raw}
+                    </ExpandableText>
+                </div>
+                <GameAttributes game={data} />
             </div>
-            <GameAttributes game={data} />
 
-            <GameTrailer gameId={data.slug} />
-            <GameScreenshots gameId={data.slug} />
+            <div>
+                <GameTrailer gameId={data.slug} />
+                <GameScreenshots gameId={data.slug} />
+            </div>
         </div>
     );
 };
