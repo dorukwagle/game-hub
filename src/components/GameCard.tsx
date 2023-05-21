@@ -1,5 +1,5 @@
 import { Card } from "flowbite-react";
-import { Game } from "../entities/Game";
+import Game from "../entities/Game";
 import getCroppedImageUrl from "../services/image-urls";
 import CriticScore from "./CriticScore";
 import Emoji from "./Emoji";

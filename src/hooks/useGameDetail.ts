@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Game } from "../entities/Game";
+import Game from "../entities/Game";
 import { ONE_DAY } from "./constants";
 import ApiClient from "../services/api-client";
 
