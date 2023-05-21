@@ -1,11 +1,6 @@
-import { Platform } from "../services/platformService";
-import ApiClient from "./api-client";
-import { Genre } from "./genreService";
-
-interface Publisher {
-    id: number;
-    name: string; 
-}
+import { Platform } from "./Platform";
+import { Genre } from "./Genre";
+import { Publisher } from "./Publisher";
 
 export interface Game {
     id: number;
@@ -19,6 +14,3 @@ export interface Game {
     metacritic: number;
     rating_top: number;
 }
-
-
-export default new ApiClient<Game>("/games");

@@ -28,7 +28,7 @@ class ApiClient<T> {
     get = (id: string | number) => 
         apiClient.get<T>(this.endpoint + "/" + id)
         .then(res => res.data);
-    
+        
 }
 
 export default ApiClient;
