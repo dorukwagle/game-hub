@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Game } from "../entities/Game";
+import Game from "../entities/Game";
 import { ONE_DAY } from "./constants";
 import ApiClient, { FetchDataResponse } from "../services/api-client";
 import useGameQuery from "../store";

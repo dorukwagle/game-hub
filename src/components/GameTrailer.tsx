@@ -1,5 +1,4 @@
 import { Spinner } from "flowbite-react";
-import { Navigate } from "react-router-dom";
 import useTrailers from "../hooks/useTrailers";
 
 interface Props {
