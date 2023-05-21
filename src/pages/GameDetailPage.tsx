@@ -15,7 +15,7 @@ const GameDetailPage = () => {
                 {data?.name}
             </h2>
             <div className="text-md mb-3 tracking-tight text-gray-900 dark:text-white">
-              <ExpandableText>{data?.description_raw}</ExpandableText>
+              <ExpandableText minLength={400}>{data?.description_raw}</ExpandableText>
             </div>
         </div>
     );
